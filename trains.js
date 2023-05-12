@@ -1,42 +1,117 @@
-//console.log("Lack Ma maslahatlari");
 console.log("This is from trains.js");
-///////////////////////////////////////////////
-const alphabet = "abcdefghijklmnopqrstuvwxyz".split("");
-let code = 2;
 
-function sezarCode(message, secret) {
-  let splitInput = message.split("");
-  let newMessage = " ";
-  splitInput.forEach((elm) => {
-    if (alphabet.includes(elm)) {
-      alphabet.forEach((letter, index) => {
-        if (letter === elm) {
-          let codedIndex = index + code;
-          if (codedIndex >= alphabet.length) {
-            codedIndex = codedIndex - alphabet.length;
-          }
-          newMessage += alphabet.at(codedIndex);
-        }
-      });
+const moment = require("moment");
+
+// TASK_ D
+
+class Shop {
+  time = moment().format("HH:mm:ss");
+  constructor(bread, noodle, coke) {
+    this.bread = bread;
+    this.noodle = noodle;
+    this.coke = coke;
+  }
+
+  //methods
+
+  //sotish
+
+  sellProduct(product, value) {
+    if (product === "non") {
+      if (value > this.bread) {
+        console.log("Mahsulot harid uchun yetarli emas!");
+      } else {
+        this.bread -= value;
+        // console.log(`Hozir ${this.time} da ${this.bread} ta cola mavjud!`);
+      }
     }
-    if (elm === "," || elm === "?" || elm === " ") {
-      newMessage += elm;
+    if (product === "lagmon") {
+      if (value > this.noodle) {
+        console.log("Mahsulot harid uchun yetarli emas!");
+      } else {
+        this.noodle -= value;
+        // console.log(`Hozir ${this.time} da ${this.noodle} ta cola mavjud!`);
+      }
     }
-  });
-  return newMessage;
+    if (product === "cola") {
+      if (value > this.coke) {
+        // console.log("Mahsulot harid uchun yetarli emas!");
+      } else {
+        this.coke -= value;
+        // console.log(`Hozir ${this.time} da ${this.coke} ta cola mavjud!`);
+      }
+    }
+  }
+
+  //qabul qilish
+
+  acceptProduuct(product, value) {
+    if (product === "non") {
+      this.bread += value;
+
+      // console.log(`Hozir ${this.time} da ${this.bread} ta non mavjud!`);
+    }
+    if (product === "lagmon") {
+      this.noodle += value;
+
+      // console.log(`Hozir ${this.time} da ${this.noodle} ta lagmon mavjud!`);
+    }
+    if (product === "cola") {
+      this.coke += value;
+    }
+  }
+
+  // qoldiq
+  remainder() {
+    console.log(
+      `Hozir ${this.time} da ${this.bread} ta non, ${this.noodle} va ${this.coke} ta cola mavjud!`
+    );
+  }
 }
 
-const message = "hello, bro,  how are you?";
+const myShop = new Shop(4, 5, 2);
+myShop.remainder();
+myShop.sellProduct("non", 1);
+myShop.acceptProduuct("cola", 4);
+myShop.remainder();
 
-const secret_msg = sezarCode(message, code);
+///////////////////////////////////////////////
+// const alphabet = "abcdefghijklmnopqrstuvwxyz".split("");
+// let code = 2;
 
-console.log("Secret =>", secret_msg);
+// function sezarCode(message, secret) {
+//   let splitInput = message.split("");
+//   let newMessage = " ";
+//   splitInput.forEach((elm) => {
+//     if (alphabet.includes(elm)) {
+//       alphabet.forEach((letter, index) => {
+//         if (letter === elm) {
+//           let codedIndex = index + code;
+//           if (codedIndex >= alphabet.length) {
+//             codedIndex = codedIndex - alphabet.length;
+//           }
+//           newMessage += alphabet.at(codedIndex);
+//         }
+//       });
+//     }
+//     if (elm === "," || elm === "?" || elm === " ") {
+//       newMessage += elm;
+//     }
+//   });
+//   return newMessage;
+// }
 
-setTimeout(() => {
-  code *= -1;
-  const message_encoded = sezarCode(secret_msg, code);
-  console.log("Original =>", message_encoded);
-}, 5000);
+// const message = "hello, bro,  how are you?";
+
+// const secret_msg = sezarCode(message, code);
+
+// console.log("Secret =>", secret_msg);
+
+// setTimeout(() => {
+//   code *= -1;
+//   const message_encoded = sezarCode(secret_msg, code);
+//   console.log("Original =>", message_encoded);
+// }, 5000);
 
 ///////////////////////////////////////////////
 // const alphabet = "abcdefghijklmnopqrstuvwxyz";
