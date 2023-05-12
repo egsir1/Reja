@@ -12,10 +12,10 @@
 // });
 
 // Reja Application
+
 const express = require("express");
 const nodeApp = express();
 const fs = require("fs");
-const http = require("http");
 
 let user;
 fs.readFile("./database/user.json", "utf8", (err, data) => {
@@ -25,6 +25,10 @@ fs.readFile("./database/user.json", "utf8", (err, data) => {
     user = JSON.parse(data);
   }
 });
+//MongoDB call
+
+const db = require("./server").db();
+console.log(db);
 
 // Kirish code
 
@@ -53,11 +57,7 @@ nodeApp.get("/author", (req, res) => {
 
 // get function
 nodeApp.get("/", function (req, res) {
-  res.render("shopping");
+  res.render("reja");
 });
 
-const server = http.createServer(nodeApp);
-let PORT = 3000;
-server.listen(PORT, function () {
-  console.log(`The server is running successfully on port : ${PORT}`);
-});
+module.exports = nodeApp;
