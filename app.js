@@ -28,7 +28,7 @@ fs.readFile("./database/user.json", "utf8", (err, data) => {
 //MongoDB call
 
 const db = require("./server").db();
-console.log(db);
+// console.log(db);
 
 // Kirish code
 
@@ -46,7 +46,15 @@ nodeApp.set("view engine", "ejs");
 // post function
 nodeApp.post("/create-item", (req, res) => {
   console.log(req.body);
-  res.json({ test: "success" });
+  const new_plan = req.body.item;
+  db.collection("plans").insertOne({ item: new_plan }, (err, data) => {
+    if (err) {
+      console.log(err);
+      res.end("something went wrong");
+    } else {
+      res.end("successfully added");
+    }
+  });
 });
 
 //author route
@@ -57,7 +65,17 @@ nodeApp.get("/author", (req, res) => {
 
 // get function
 nodeApp.get("/", function (req, res) {
-  res.render("reja");
+  db.collection("plans")
+    .find()
+    .toArray((err, data) => {
+      if (err) {
+        console.log(err);
+        res.end("something went wrong");
+      } else {
+        console.log(data);
+        res.render("reja", { items: data });
+      }
+    });
 });
 
 module.exports = nodeApp;

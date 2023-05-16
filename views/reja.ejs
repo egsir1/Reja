@@ -34,6 +34,29 @@
           </div>
         </form>
       </div>
+      <ul id="item-list" class="list-group pb-5">
+        <% items.map(function(item) {%>
+        <li
+          class="list-group-item list-group-item-info d-flex align-items-center justify-content-between"
+        >
+          <span class="item-text"><%=item.item%></span>
+          <div>
+            <button
+              data-id="<%=item.id%>"
+              class="btn edit-me btn-secondary btn-sm m1-1"
+            >
+              Edit
+            </button>
+            <button
+              data-id="<%=item.id%>"
+              class="btn delete-me btn-danger btn-sm"
+            >
+              Delete
+            </button>
+          </div>
+        </li>
+        <% }) %>
+      </ul>
       <button id="clean-all" class="btn btn-danger" style="border-radius: 20px">
         Delete All
       </button>
