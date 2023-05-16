@@ -48,12 +48,14 @@ nodeApp.post("/create-item", (req, res) => {
   console.log(req.body);
   const new_plan = req.body.item;
   db.collection("plans").insertOne({ item: new_plan }, (err, data) => {
-    if (err) {
-      console.log(err);
-      res.end("something went wrong");
-    } else {
-      res.end("successfully added");
-    }
+    // if (err) {
+    //   console.log(err);
+    //   res.end("something went wrong");
+    // } else {
+    //   res.end("successfully added");
+    // }
+    console.log(data.ops);
+    res.json(data.ops[0]);
   });
 });
 
