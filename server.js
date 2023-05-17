@@ -4,7 +4,7 @@ const mongodb = require("mongodb");
 
 let db;
 const connectionString =
-  "mongodb+srv://sam:DKjk9m9CuKeJfaTE@cluster0.wyfd8jw.mongodb.net/?retryWrites=true&w=majority";
+  "mongodb+srv://sam:DKjk9m9CuKeJfaTE@cluster0.wyfd8jw.mongodb.net/Reja?retryWrites=true&w=majority";
 
 mongodb.connect(
   connectionString,

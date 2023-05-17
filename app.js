@@ -17,6 +17,8 @@ const express = require("express");
 const nodeApp = express();
 const fs = require("fs");
 
+const mongodb = require("mongodb");
+
 let user;
 fs.readFile("./database/user.json", "utf8", (err, data) => {
   if (err) {
@@ -59,6 +61,41 @@ nodeApp.post("/create-item", (req, res) => {
   });
 });
 
+//delete function
+
+nodeApp.post("/delete-item", (req, res) => {
+  const id = req.body.id;
+  console.log(id);
+  db.collection("plans").deleteOne(
+    { _id: new mongodb.ObjectId(id) },
+    function (err, data) {
+      res.json({ state: "success" });
+    }
+  );
+});
+
+// EDIT FUNCTION
+nodeApp.post("/edit-item", (req, res) => {
+  const data = req.body;
+  console.log(data);
+  db.collection("plans").findOneAndUpdate(
+    { _id: new mongodb.ObjectId(data.id) },
+    { $set: { item: data.new_input } },
+    function (err, data) {
+      res.json({ state: "succes" });
+    }
+  );
+});
+
+// DELETE ALL
+
+nodeApp.post("/delete-all", (req, res) => {
+  if (req.body.delete_all) {
+    db.collection("plans").deleteMany(function () {
+      res.json({ state: "All Plans Deleted" });
+    });
+  }
+});
 //author route
 
 nodeApp.get("/author", (req, res) => {

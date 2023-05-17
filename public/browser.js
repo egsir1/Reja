@@ -8,13 +8,13 @@ function itemTemplate(item) {
           <span class="item-text">${item.item}</span>
           <div>
             <button
-              data-id="${item.id}"
+              data-id=${item._id}
               class="btn edit-me btn-secondary btn-sm m1-1"
             >
               Edit
             </button>
             <button
-              data-id="${item.id}"
+              data-id=${item._id}
               class="btn delete-me btn-danger btn-sm"
             >
               Delete
@@ -38,5 +38,65 @@ document.getElementById("create-form").addEventListener("submit", function (e) {
     })
     .catch((err) => {
       console.log("Err : try again!");
+    });
+});
+
+document.addEventListener("click", function (e) {
+  //delete
+  console.log(e.target);
+  if (e.target.classList.contains("delete-me")) {
+    if (confirm("Are you sure to delete this element?")) {
+      axios
+        .post("/delete-item", {
+          id: e.target.getAttribute("data-id"),
+        })
+        .then((response) => {
+          console.log(response.data);
+          e.target.parentElement.parentElement.remove();
+        })
+        .catch((err) => {
+          console.log(err.message || "Please try again!");
+        });
+    }
+  }
+
+  //Edit
+
+  if (e.target.classList.contains("edit-me")) {
+    let userInput = prompt(
+      "Edit the element",
+      e.target.parentElement.parentElement.querySelector(".item-text").innerHTML
+    );
+
+    if (userInput) {
+      axios
+        .post("/edit-item", {
+          id: e.target.getAttribute("data-id"),
+          new_input: userInput,
+        })
+        .then((response) => {
+          console.log(response);
+          e.target.parentElement.parentElement.querySelector(
+            ".item-text"
+          ).innerHTML = userInput;
+        })
+        .catch((err) => {
+          console.log(err.message || "Please try again!");
+        });
+    }
+  }
+});
+
+//delete all
+
+document.getElementById("clean-all").addEventListener("click", function () {
+  axios
+    .post("/delete-all", { delete_all: true })
+    .then((response) => {
+      alert(response.data.state);
+      document.location.reload();
+    })
+    .catch((err) => {
+      console.log(err.message || "Please try again!");
     });
 });
