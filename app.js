@@ -47,6 +47,7 @@ nodeApp.set("view engine", "ejs");
 
 // post function
 nodeApp.post("/create-item", (req, res) => {
+  console.log("user entered /create-item");
   console.log(req.body);
   const new_plan = req.body.item;
   db.collection("plans").insertOne({ item: new_plan }, (err, data) => {
@@ -104,6 +105,7 @@ nodeApp.get("/author", (req, res) => {
 
 // get function
 nodeApp.get("/", function (req, res) {
+  console.log("data arrived");
   db.collection("plans")
     .find()
     .toArray((err, data) => {
