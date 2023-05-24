@@ -1,79 +1,97 @@
 console.log("This is from trains.js");
 
-const moment = require("moment");
+// const moment = require("moment");
 
-// TASK_ D
+// // TASK_ D
 
-class Shop {
-  time = moment().format("HH:mm:ss");
-  constructor(bread, noodle, coke) {
-    this.bread = bread;
-    this.noodle = noodle;
-    this.coke = coke;
+// class Shop {
+//   time = moment().format("HH:mm:ss");
+//   constructor(bread, noodle, coke) {
+//     this.bread = bread;
+//     this.noodle = noodle;
+//     this.coke = coke;
+//   }
+
+//   //methods
+
+//   //sotish
+
+//   sellProduct(product, value) {
+//     if (product === "non") {
+//       if (value > this.bread) {
+//         console.log("Mahsulot harid uchun yetarli emas!");
+//       } else {
+//         this.bread -= value;
+//         // console.log(`Hozir ${this.time} da ${this.bread} ta cola mavjud!`);
+//       }
+//     }
+//     if (product === "lagmon") {
+//       if (value > this.noodle) {
+//         console.log("Mahsulot harid uchun yetarli emas!");
+//       } else {
+//         this.noodle -= value;
+//         // console.log(`Hozir ${this.time} da ${this.noodle} ta cola mavjud!`);
+//       }
+//     }
+//     if (product === "cola") {
+//       if (value > this.coke) {
+//         // console.log("Mahsulot harid uchun yetarli emas!");
+//       } else {
+//         this.coke -= value;
+//         // console.log(`Hozir ${this.time} da ${this.coke} ta cola mavjud!`);
+//       }
+//     }
+//   }
+
+//   //qabul qilish
+
+//   acceptProduuct(product, value) {
+//     if (product === "non") {
+//       this.bread += value;
+
+//       // console.log(`Hozir ${this.time} da ${this.bread} ta non mavjud!`);
+//     }
+//     if (product === "lagmon") {
+//       this.noodle += value;
+
+//       // console.log(`Hozir ${this.time} da ${this.noodle} ta lagmon mavjud!`);
+//     }
+//     if (product === "cola") {
+//       this.coke += value;
+//     }
+//   }
+
+//   // qoldiq
+//   remainder() {
+//     console.log(
+//       `Hozir ${this.time} da ${this.bread} ta non, ${this.noodle} va ${this.coke} ta cola mavjud!`
+//     );
+//   }
+// }
+
+// const myShop = new Shop(4, 5, 2);
+// myShop.remainder();
+// myShop.sellProduct("non", 1);
+// myShop.acceptProduuct("cola", 4);
+// myShop.remainder();
+
+//////////////////////////////////////////////
+// TASK -E
+///////////////////////////
+
+const tubSon = (num) => {
+  if (num <= 1) {
+    return false;
   }
-
-  //methods
-
-  //sotish
-
-  sellProduct(product, value) {
-    if (product === "non") {
-      if (value > this.bread) {
-        console.log("Mahsulot harid uchun yetarli emas!");
-      } else {
-        this.bread -= value;
-        // console.log(`Hozir ${this.time} da ${this.bread} ta cola mavjud!`);
-      }
-    }
-    if (product === "lagmon") {
-      if (value > this.noodle) {
-        console.log("Mahsulot harid uchun yetarli emas!");
-      } else {
-        this.noodle -= value;
-        // console.log(`Hozir ${this.time} da ${this.noodle} ta cola mavjud!`);
-      }
-    }
-    if (product === "cola") {
-      if (value > this.coke) {
-        // console.log("Mahsulot harid uchun yetarli emas!");
-      } else {
-        this.coke -= value;
-        // console.log(`Hozir ${this.time} da ${this.coke} ta cola mavjud!`);
-      }
+  for (let i = 2; i < num; i++) {
+    if (num % i === 0) {
+      return false;
     }
   }
-
-  //qabul qilish
-
-  acceptProduuct(product, value) {
-    if (product === "non") {
-      this.bread += value;
-
-      // console.log(`Hozir ${this.time} da ${this.bread} ta non mavjud!`);
-    }
-    if (product === "lagmon") {
-      this.noodle += value;
-
-      // console.log(`Hozir ${this.time} da ${this.noodle} ta lagmon mavjud!`);
-    }
-    if (product === "cola") {
-      this.coke += value;
-    }
-  }
-
-  // qoldiq
-  remainder() {
-    console.log(
-      `Hozir ${this.time} da ${this.bread} ta non, ${this.noodle} va ${this.coke} ta cola mavjud!`
-    );
-  }
-}
-
-const myShop = new Shop(4, 5, 2);
-myShop.remainder();
-myShop.sellProduct("non", 1);
-myShop.acceptProduuct("cola", 4);
-myShop.remainder();
+  return true;
+};
+const result = tubSon(9);
+console.log(result);
 
 ///////////////////////////////////////////////
 // const alphabet = "abcdefghijklmnopqrstuvwxyz".split("");
