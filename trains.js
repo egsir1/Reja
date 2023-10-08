@@ -78,21 +78,103 @@ console.log("This is from trains.js");
 //////////////////////////////////////////////
 // TASK -E
 ///////////////////////////
+//CHALLENGE 5 SORT ME
+// const detail_list = [12, null, 55, 23, null, 34, null, 32, null, null];
+// let tempArr = [];
+// const moveNullsKeepOrder = (arr) => {
+//   for (let i = 0; i < arr.length; i++) {
+//     if (arr[i] == null) {
+//       tempArr.push(arr[i]);
+//       const filteredArr = arr.filter((ele) => ele !== null);
+//       const result = filteredArr.concat(tempArr);
+//       console.log("result:", result);
+//     }
+//   }
+// };
+// const result1 = moveNullsKeepOrder(detail_list);
+// const detail_list = [12, null, 55, 23, null, 34, null, 32, null, null];
 
-const tubSon = (num) => {
-  if (num <= 1) {
-    return false;
-  }
-  for (let i = 2; i < num; i++) {
-    if (num % i === 0) {
-      return false;
-    }
-  }
-  return true;
-};
-const result = tubSon(9);
-console.log(result);
+// const moveNullsKeepOrder = detail_list.sort((a, b) => {
+//   if (a === null) {
+//     return 1;
+//   }
+//   if (b === null) {
+//     return -1;
+//   }
 
+//   if (a === b) {
+//     return 0;
+//   }
+//   return a < b ? -1 : 1;
+// });
+
+// console.log("result:", moveNullsKeepOrder);
+// const detail_list = [12, null, 55, 23, null, 34, null, 32, null, null];
+
+// const moveNullsKeepOrder = (arr) => {
+//   const newArr = arr.sort((a, b) => {
+//     if (a === null) {
+//       return 1;
+//     }
+//     if (b === null) {
+//       return -1;
+//     }
+//     if (a === b) {
+//       return 0;
+//     }
+//     return a < b ? -1 : 1;
+//   });
+//   return newArr;
+// };
+// const result1 = moveNullsKeepOrder(detail_list);
+
+// console.log("result:", result1);
+
+// const tubSon = (num) => {
+//   if (num <= 1) {
+//     return false;
+//   }
+//   for (let i = 2; i < num; i++) {
+//     if (num % i === 0) {
+//       return false;
+//     }
+//   }
+//   return true;
+// };
+// const result = tubSon(9);
+// console.log(result);
+
+// Challange 4
+// const arr = [2, 1, 5, 30, 1, 3, 10];
+
+// const buyStock = (arr) => {
+//   let min_value = Math.min(...arr);
+//   const max_val = Math.max(...arr);
+//   const max_index = arr.indexOf(max_val);
+//   if (arr.indexOf(min_value) > max_index) {
+//     let newArr = arr.slice(0, max_index);
+//     for (let i = 0; i < newArr.length; i++) {
+//       min_value = newArr[0];
+//       if (min_value > newArr[i]) {
+//         min_value = newArr[i];
+//       }
+//     }
+//   }
+//   const profit = max_val - min_value;
+
+//   console.log(
+//     `You should buy stock now => {index: ${arr.indexOf(
+//       min_value
+//     )}} (price => ${min_value})`
+//   );
+//   console.log(
+//     `You should sell stock now => {index: ${arr.indexOf(
+//       max_val
+//     )}}(price => ${max_val})`
+//   );
+//   console.log(`Your profit: ${profit}`);
+// };
+// buyStock(arr);
 ///////////////////////////////////////////////
 // const alphabet = "abcdefghijklmnopqrstuvwxyz".split("");
 // let code = 2;
@@ -261,3 +343,35 @@ console.log(result);
 // run();
 
 // console.log("Passed here 1");
+
+/** CHALLANGE: MURDER CASE */
+
+// const magazine =
+//   "Lorem kill ipsum dolor sit amet, consectetur adipiscing elit, you sed do I eiusmod tempor incididut";
+
+// const note = "dolor kill you";
+
+// const canMurdererWrite = (note) => {
+//   const splitNote = note.split(" ");
+//   const splitMagazine = magazine.split(" ");
+//   const commaRemoved = splitMagazine.map((word) => {
+//     return word.replace(",", "");
+//   });
+//   const allSame = splitNote.every((item) => {
+//     return commaRemoved.includes(item);
+//   });
+//   return allSame;
+// };
+// const result = canMurdererWrite(note);
+// console.log("Killer yoza oladimi:", result);
+// const data = "ad5we34jkf89";
+// const findDigits = (data) => {
+//   for (let i = 0; i < data.length; i++) {
+//     console.log(data[i]);
+//     if (data[+i] >= 0 && data[+i] < 1000000) {
+//       console.log(+data[i]);
+//     }
+//     console.log(typeData);
+//   }
+// };
+// findDigits(data);
